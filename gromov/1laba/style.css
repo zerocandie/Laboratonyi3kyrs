@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-color: #87CEEB; 
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.result {
+    width: 300px;
+    height: 50px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    background: white;
+    color: black;
+    border-radius: 6px;
+    text-align: right;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+}
+
+.Oper_Numb {
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.Oper_Numb button {
+    height: 50px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+
+
+#btn_op_clear,
+#btn_op_sign,
+#btn_op_percent,
+#btn_op_div,
+#btn_op_mult,
+#btn_op_minus,
+#btn_op_plus,
+#btn_op_equal {
+    background: #FFD700; 
+    color: #002147;
+    font-weight: bold;
+}
+
+footer {
+    width: 300px;
+    padding: 15px;
+    background: white;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Times, serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.LIGHT {
+    color: #FFD700; 
+    font-weight: bold;
+}
+
