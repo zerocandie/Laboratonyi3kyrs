@@ -5,32 +5,23 @@ export class AccordionComponent {
         this.onItemClick = onItemClick; 
     }
 
-    render() {
-    const accordionHTML = this.items.map(item => `
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="heading-${item.id}">
-                <button class="accordion-button collapsed" type="button" data-id="${item.id}" 
-                        data-bs-toggle="collapse" data-bs-target="#collapse-${item.id}" 
-                        aria-expanded="false">
-                    ${item.title}
-                </button>
-            </h2>
-            <div id="collapse-${item.id}" class="accordion-collapse collapse" aria-labelledby="heading-${item.id}">
-                <div class="accordion-body">
-                    ${item.content}
+   getHTML(data) {
+    return (
+        `
+            <div class="card mb-3" style="width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="${data.photo_400_orig}" class="img-fluid" alt="картинка">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${data.first_name} ${data.last_name}</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
-
-    this.parent.innerHTML = `<div class="accordion">${accordionHTML}</div>`;
-
-    
-    this.parent.querySelectorAll('.details-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = e.target.dataset.id;
-            this.onItemClick(id);
-        });
-    });
+        `
+    )
 }
 }
+
