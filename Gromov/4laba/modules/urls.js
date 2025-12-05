@@ -10,7 +10,7 @@ class Urls {
     return `${this.url}/groups.getMembers?group_id=${groupId}&fields=photo_400&${this.commonInfo}`;
 }
 
-    // modules/urls.js
+
 getUserInfo(userId) {
     const fields = [
         'photo_400',
