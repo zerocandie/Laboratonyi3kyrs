@@ -22,7 +22,7 @@ class App {
         } else if (hash.startsWith('#user/')) {
             this.showUserPage();
         } else {
-            this.showMainPage();
+            this.showMainPage(); 
         }
     }
 
