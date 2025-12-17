@@ -1,28 +1,27 @@
-import { MainPage } from "./pages/main/index.js";
-import { DogDetailsPage } from "./pages/dog-details/index.js";
+// main.js (точка входа фронтенда)
+import { MainPage } from './pages/MainPage.js';
+import { DogDetailsPage } from './pages/DogDetailsPage.js';
+import { AddDogPage } from './pages/AddDogPage.js';
 
-const root = document.getElementById('root');
+const app = document.getElementById('app');
 
 let currentPage = null;
 
+const showMain = () => {
+    if (currentPage) currentPage = null;
+    currentPage = new MainPage(app, showDetails, showAddDog);
+    currentPage.render();
+};
 
-function showMainPage() {
-    currentPage?.destroy?.(); 
-    const page = new MainPage(root, (dogId) => {
-        showDogDetailsPage(dogId);
-    });
-    page.render();
-    currentPage = page;
-}
+const showDetails = (dogId) => {
+    currentPage = new DogDetailsPage(app, showMain);
+    currentPage.render(dogId);
+};
 
+const showAddDog = () => {
+    currentPage = new AddDogPage(app, showMain);
+    currentPage.render();
+};
 
-function showDogDetailsPage(dogId) {
-    currentPage?.destroy?.();
-    const page = new DogDetailsPage(root, () => {
-        showMainPage();
-    });
-    page.render(dogId);
-    currentPage = page;
-}
-
-showMainPage();
+// Запуск
+showMain();
