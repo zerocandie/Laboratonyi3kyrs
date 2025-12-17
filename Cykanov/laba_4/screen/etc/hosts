@@ -1,0 +1,215 @@
+﻿# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+# Added by Docker Desktop
+10.9.2.25 host.docker.internal
+10.9.2.25 gateway.docker.internal
+# To allow the same kube context to work on the host and the container:
+127.0.0.1 kubernetes.docker.internal
+# End of section
+
+127.0.0.1 gitlab.local
+127.0.0.1 nexus.local
+
+8.8.4.4    codeload.github.com
+
+8.8.4.4    phicdn.net
+
+8.8.4.4    api.github.com
+
+8.8.4.4    support.kaspersky.ru
+
+8.8.4.4    kaspersky.ru
+
+8.8.4.4    virusinfo.info
+
+8.8.4.4    forum.kasperskyclub.ru
+
+8.8.4.4    cyberforum.ru
+
+8.8.4.4    soft-file.ru
+
+8.8.4.4    360totalsecurity.com
+
+8.8.4.4    cezurity.com
+
+8.8.4.4    www.dropbox.com
+
+8.8.4.4    193.228.54.23
+
+8.8.4.4    spec-komp.com
+
+8.8.4.4    eset.ua
+
+8.8.4.4    regist.safezone.cc
+
+8.8.4.4    programki.net
+
+8.8.4.4    safezone.cc
+
+
+8.8.4.4    www.esetnod32.ru
+
+8.8.4.4    www.comss.ru
+
+8.8.4.4    forum.oszone.net
+
+
+8.8.4.4    blog-pc.ru
+
+8.8.4.4    securrity.ru
+
+8.8.4.4    norton.com
+
+8.8.4.4    vellisa.ru
+
+8.8.4.4    download-software.ru
+
+8.8.4.4    drweb-cureit.ru
+
+8.8.4.4    softpacket.ru
+
+8.8.4.4    www.kaspersky.com
+
+
+8.8.4.4    www.avast.ua
+
+8.8.4.4    www.avast.ru
+
+8.8.4.4    zillya.ua
+
+8.8.4.4    safezone.ua
+
+8.8.4.4    vms.drweb.ru
+
+8.8.4.4    www.drweb.ua
+
+8.8.4.4    free.drweb.ru
+
+8.8.4.4    biblprog.org.ua
+
+8.8.4.4    free-software.com.ua
+
+8.8.4.4    free.dataprotection.com.ua
+
+8.8.4.4    www.drweb.com
+
+8.8.4.4    www.softportal.com
+
+8.8.4.4    www.nashnet.ua
+
+8.8.4.4    softlist.com.ua
+
+8.8.4.4    it-doc.info
+
+8.8.4.4    esetnod32.ru
+
+8.8.4.4    blog-bridge.ru
+
+8.8.4.4    remontka.pro
+
+8.8.4.4    securos.org.ua
+
+8.8.4.4    pc-helpp.com
+
+8.8.4.4    softdroid.net
+
+
+8.8.4.4    malwarebytes.com
+
+8.8.4.4    ru.vessoft.com
+
+8.8.4.4    AlpineFile.ru
+
+8.8.4.4    malwarebytes-anti-malware.ru.uptodown.com
+
+8.8.4.4    ProgramDownloadFree.com
+
+8.8.4.4    download.cnet.com
+
+8.8.4.4    soft.mydiv.net
+
+8.8.4.4    spyware-ru.com
+
+8.8.4.4    remontcompa.ru
+
+8.8.4.4    www.hitmanpro.com
+
+8.8.4.4    hitman-pro.ru.uptodown.com
+
+8.8.4.4    www.bleepingcomputer.com
+
+8.8.4.4    soft.oszone.net
+
+8.8.4.4    krutor.org
+
+8.8.4.4    www.greatis.com
+
+8.8.4.4    unhackme.ru.uptodown.com
+
+8.8.4.4    programy.com.ua
+
+8.8.4.4    rsload.net
+
+8.8.4.4    softobase.com
+
+
+8.8.4.4    www.besplatnoprogrammy.ru
+
+8.8.4.4    unhackme.en.softonic.com
+
+8.8.4.4    unhackme.com
+
+8.8.4.4    unhackme.ru
+
+8.8.4.4    nnm-club.name
+
+8.8.4.4    vgrom.com
+
+8.8.4.4    moneropool.com
+
+8.8.4.4    mine.moneropool.com
+
+8.8.4.4    xmr.cryptopool.org
+
+8.8.4.4    pool.monero.org
+
+8.8.4.4    minexmr.com
+
+8.8.4.4    monero.crypto-pool.fr
+
+8.8.4.4    dwarfpool.com
+
+
+
+
+
+
+
+8.8.4.4    pool.minexmr.to
+
+
+8.8.4.4    z-oleg.com
+
+8.8.4.4    pococoxx.cc
+
+8.8.4.4    pococo.cc
+
