@@ -47,42 +47,58 @@ class AddPersonPage {
             window.location.hash = '#people';
         });
 
+        // Основной обработчик формы
         document.getElementById('add-person-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(e.target);
 
-            const name = formData.get('name').trim();
-            const role = formData.get('role').trim();
-            const description = formData.get('description').trim();
-            const photo = formData.get('photo');
+            const name = document.querySelector('input[name="name"]').value.trim();
+            const role = document.querySelector('input[name="role"]').value.trim();
+            const description = document.querySelector('textarea[name="description"]').value.trim();
+            const photoFile = fileInput.files[0];
 
-            if (!name || !role || !description || !photo) {
-                alert('Заполните все поля');
+            if (!name || !role || !description || !photoFile) {
+                alert('Заполните все поля и выберите фото');
                 return;
             }
 
-            const uploadData = new FormData();
-            uploadData.append('name', name);
-            uploadData.append('role', role);
-            uploadData.append('description', description);
-            uploadData.append('photo', photo);
-
             try {
-                const res = await fetch('/api/people', {
+                // Конвертируем фото в base64
+                const photoBase64 = await this.fileToBase64(photoFile);
+
+                // Отправляем JSON
+                const response = await fetch('/api/people', {
                     method: 'POST',
-                    body: uploadData 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        role,
+                        description,
+                        photoBase64 // ← ключевое изменение!
+                    })
                 });
 
-                if (res.ok) {
-                    alert('Человек добавлен!');
+                if (response.ok) {
+                    alert('Человек успешно добавлен!');
                     window.location.hash = '#people';
                 } else {
-                    const err = await res.json();
-                    alert('Ошибка: ' + (err.error || 'неизвестно'));
+                    const error = await response.json();
+                    alert('Ошибка: ' + (error.error || 'неизвестная ошибка'));
                 }
             } catch (err) {
                 alert('Не удалось добавить: ' + err.message);
             }
+        });
+    }
+
+    // Вспомогательная функция: файл → base64
+    fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result); // data:image/png;base64,...
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
         });
     }
 }

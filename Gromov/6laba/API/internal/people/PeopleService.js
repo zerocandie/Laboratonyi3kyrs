@@ -7,13 +7,13 @@ class PeopleService {
     }
 
     static getById(id) {
-        return PersonDAO.findById(id).toJSON();
+        const person = PersonDAO.findById(id);
+        return person ? person.toJSON() : null;
     }
 
     static create(person) {
-    
-    return PersonDAO.create(person).toJSON();
-}
+        return PersonDAO.create(person).toJSON();
+    }
 
     static remove(id) {
         PersonDAO.delete(id);

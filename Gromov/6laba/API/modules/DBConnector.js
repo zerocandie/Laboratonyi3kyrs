@@ -1,20 +1,20 @@
+// API/modules/DBConnector.js
 const fs = require('fs');
 const path = require('path');
 
 class DBConnector {
     constructor(filename) {
-        this.filename = filename;
+        // Сохраняем полный путь к файлу в КОРНЕ проекта
+        this.filePath = path.join(__dirname, '..', '..', filename);
     }
 
     readFile() {
-        const fullPath = path.join(process.cwd(), 'db', this.filename);
-        return fs.readFileSync(fullPath, 'utf8');
+        return fs.readFileSync(this.filePath, 'utf8');
     }
 
     writeFile(data) {
-        const fullPath = path.join(process.cwd(), 'db', this.filename);
-        fs.mkdirSync(path.dirname(fullPath), { recursive: true });
-        fs.writeFileSync(fullPath, data, 'utf8');
+        
+        fs.writeFileSync(this.filePath, data, 'utf8');
     }
 }
 
