@@ -18,9 +18,8 @@ class AddPersonPage {
                         <input type="text" class="form-control" name="role" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Фото</label>
-                        <input type="file" class="form-control" name="photo" accept="image/*" required>
-                        <div class="mt-2" id="photo-preview"></div>
+                        <label class="form-label">Ссылка на фото</label>
+                        <input type="url" class="form-control" name="photo" placeholder="https://example.com/photo.jpg" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Описание</label>
@@ -32,56 +31,39 @@ class AddPersonPage {
             </div>
         `;
 
-        // Превью фото
-        const fileInput = document.querySelector('input[name="photo"]');
-        const preview = document.getElementById('photo-preview');
-        fileInput.addEventListener('change', () => {
-            preview.innerHTML = '';
-            if (fileInput.files[0]) {
-                const url = URL.createObjectURL(fileInput.files[0]);
-                preview.innerHTML = `<img src="${url}" class="img-thumbnail" style="max-height:200px;">`;
-            }
-        });
-
         document.getElementById('back-btn').addEventListener('click', () => {
             window.location.hash = '#people';
         });
 
         document.getElementById('add-person-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(e.target);
 
-            const name = formData.get('name').trim();
-            const role = formData.get('role').trim();
-            const description = formData.get('description').trim();
-            const photo = formData.get('photo');
+            const name = document.querySelector('input[name="name"]').value.trim();
+            const role = document.querySelector('input[name="role"]').value.trim();
+            const photo = document.querySelector('input[name="photo"]').value.trim();
+            const description = document.querySelector('textarea[name="description"]').value.trim();
 
-            if (!name || !role || !description || !photo) {
+            if (!name || !role || !photo || !description) {
                 alert('Заполните все поля');
                 return;
             }
 
-            const uploadData = new FormData();
-            uploadData.append('name', name);
-            uploadData.append('role', role);
-            uploadData.append('description', description);
-            uploadData.append('photo', photo);
-
             try {
-                const res = await fetch('/api/people', {
+                const response = await fetch('/api/people', {
                     method: 'POST',
-                    body: uploadData 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, role, photo, description })
                 });
 
-                if (res.ok) {
-                    alert('Человек добавлен!');
+                if (response.ok) {
+                    alert('✅ Человек добавлен!');
                     window.location.hash = '#people';
                 } else {
-                    const err = await res.json();
-                    alert('Ошибка: ' + (err.error || 'неизвестно'));
+                    const error = await response.json();
+                    alert('❌ Ошибка: ' + (error.error || 'неизвестно'));
                 }
             } catch (err) {
-                alert('Не удалось добавить: ' + err.message);
+                alert('⚠️ Не удалось добавить: ' + err.message);
             }
         });
     }

@@ -1,0 +1,10 @@
+{
+  "name": "lab6",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node API/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
