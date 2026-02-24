@@ -18,9 +18,8 @@ class AddPersonPage {
                         <input type="text" class="form-control" name="role" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Фото</label>
-                        <input type="file" class="form-control" name="photo" accept="image/*" required>
-                        <div class="mt-2" id="photo-preview"></div>
+                        <label class="form-label">Ссылка на фото</label>
+                        <input type="url" class="form-control" name="photo" placeholder="https://example.com/photo.jpg" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Описание</label>
@@ -32,73 +31,40 @@ class AddPersonPage {
             </div>
         `;
 
-        // Превью фото
-        const fileInput = document.querySelector('input[name="photo"]');
-        const preview = document.getElementById('photo-preview');
-        fileInput.addEventListener('change', () => {
-            preview.innerHTML = '';
-            if (fileInput.files[0]) {
-                const url = URL.createObjectURL(fileInput.files[0]);
-                preview.innerHTML = `<img src="${url}" class="img-thumbnail" style="max-height:200px;">`;
-            }
-        });
-
         document.getElementById('back-btn').addEventListener('click', () => {
             window.location.hash = '#people';
         });
 
-        // Основной обработчик формы
         document.getElementById('add-person-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const name = document.querySelector('input[name="name"]').value.trim();
             const role = document.querySelector('input[name="role"]').value.trim();
+            const photo = document.querySelector('input[name="photo"]').value.trim();
             const description = document.querySelector('textarea[name="description"]').value.trim();
-            const photoFile = fileInput.files[0];
 
-            if (!name || !role || !description || !photoFile) {
-                alert('Заполните все поля и выберите фото');
+            if (!name || !role || !photo || !description) {
+                alert('Заполните все поля');
                 return;
             }
 
             try {
-                // Конвертируем фото в base64
-                const photoBase64 = await this.fileToBase64(photoFile);
-
-                // Отправляем JSON
                 const response = await fetch('/api/people', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name,
-                        role,
-                        description,
-                        photoBase64 // ← ключевое изменение!
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, role, photo, description })
                 });
 
                 if (response.ok) {
-                    alert('Человек успешно добавлен!');
+                    alert('✅ Человек добавлен!');
                     window.location.hash = '#people';
                 } else {
                     const error = await response.json();
-                    alert('Ошибка: ' + (error.error || 'неизвестная ошибка'));
+                    alert('❌ Ошибка: ' + (error.error || 'неизвестно'));
                 }
             } catch (err) {
-                alert('Не удалось добавить: ' + err.message);
+                alert('⚠️ Не удалось добавить: ' + err.message);
             }
-        });
-    }
-
-    // Вспомогательная функция: файл → base64
-    fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result); // data:image/png;base64,...
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
         });
     }
 }
